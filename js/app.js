@@ -14,6 +14,7 @@ playButton.addEventListener('click', function(){
     
     //seleziono il container nel quale aggiungo la griglia
     const gridContainer = document.querySelector('.grid');
+    gridContainer.style.pointerEvents = `auto`;
     //uso .replaceChildren per svuotare gridContainer ogni volta che l'utente clicca sul bottone
     gridContainer.replaceChildren(); 
 
@@ -90,15 +91,18 @@ playButton.addEventListener('click', function(){
                 //quando l'utente clicca su una cella, quest'ultima cambierà colore 
                 cellElement.classList.add('cell_red');
                 console.log('hai perso');
+                console.log('celle senza bomba selezionate: ' + noBombCellCounter);
+                gridContainer.style.pointerEvents = `none`;
             } else {
                 cellElement.classList.add('cell_dark');
                 //Se la casella cliccata non è una bomba, allora aumento il counter delle celle senza bomba di 1
                 noBombCellCounter++;
-                console.log(noBombCellCounter);
 
                 //se seleziono tutte le cell senza bomba, allora vinco
                 if (noBombCellCounter === gridTotalCellCount - bombs.length) {
                     console.log('hai vinto');
+                    console.log('celle senza bomba selezionate: ' + noBombCellCounter);
+                    gridContainer.style.pointerEvents = `none`;
                 } 
             }
         })
@@ -111,6 +115,7 @@ playButton.addEventListener('click', function(){
 //quando bombs.includes(cellNum) allora la partita termina, l'utente non può più cliccare su neesun'altra cella
 //quando gridtotalcellcount === gridtotalcellcount - 16 allora la partita termina (vittoria) e l'utente non può più cliccare 
 //quando finisce la partita bisogna comunicare il punteggio : punteggio= numero di celle con classe cell_dark
+    //comunicare quante caselle sono state cliccate 
     
 
 
