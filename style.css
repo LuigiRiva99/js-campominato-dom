@@ -49,7 +49,12 @@ header .container{
 }
 
 .cell_dark {
-    background-color: blue;
+    background-color: rgb(46, 156, 245);
+    color: white;
+}
+
+.cell_red {
+    background-color: red;
     color: white;
 }
 

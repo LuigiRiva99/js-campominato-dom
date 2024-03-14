@@ -7,6 +7,7 @@
 //seleziono il button dal dom
 const playButton = document.getElementById('playbtn')
 
+
 //aggiungo event per il click del btn
 playButton.addEventListener('click', function(){
     //genero ciclo for per aggiungere la griglia nell'html
@@ -41,6 +42,22 @@ playButton.addEventListener('click', function(){
     //constante per determinare il numero di celle totali
     const gridTotalCellCount= cellRowCount * cellColumnCount;
 
+    //creare un array che genera numeri casuali da 1 a num max di celle
+    //NO doppioni, l'array deve essere riempito di numeri finchè non ce ne sono 16
+    const bombs= []; //array
+    while (bombs.length < 16) {
+        const bombNum = Math.floor(Math.random() * gridTotalCellCount) + 1; 
+        
+        if (bombs.includes(bombNum)) {
+        } else {
+            bombs.push(bombNum);
+        }
+    }
+    console.log(bombs);
+
+    //creare contatore per contare celle senza bombe
+    noBombCellCounter = 0;
+
     //genero ciclo for
     for (let i = 0; i < gridTotalCellCount; i++) {
         //creo il div della cell con .createElement
@@ -66,28 +83,35 @@ playButton.addEventListener('click', function(){
     
         //aggiungo event per il click sulla cell
         cellElement.addEventListener('click', function(){
-            //quando l'utente clicca su una cella, quest'ultima cambierà colore 
-            cellElement.classList.toggle('cell_dark');
+             
             //e stamperà un messaggio in console con il num della cella cliccata
             console.log(cellNum);
+            if (bombs.includes(cellNum)){
+                //quando l'utente clicca su una cella, quest'ultima cambierà colore 
+                cellElement.classList.add('cell_red');
+                console.log('hai perso');
+            } else {
+                cellElement.classList.add('cell_dark');
+                //Se la casella cliccata non è una bomba, allora aumento il counter delle celle senza bomba di 1
+                noBombCellCounter++;
+                console.log(noBombCellCounter);
+
+                //se seleziono tutte le cell senza bomba, allora vinco
+                if (noBombCellCounter === gridTotalCellCount - bombs.length) {
+                    console.log('hai vinto');
+                } 
+            }
         })
     }
-    
-    //creare un array che genera numeri casuali da 1 a num max di celle
-    //NO doppioni, l'array essere riempito di numeri finchè non ce ne sono 16
-    const bombs= []; //array
-    while (bombs.length < 16) {
-        const bombNum = Math.floor(Math.random() * gridTotalCellCount) + 1; 
-        
-        if (bombs.includes(bombNum)) {
-        } else {
-            bombs.push(bombNum);
-        }
-    }
-    
-    console.log(bombs);
 })
 
+
+
+
+//quando bombs.includes(cellNum) allora la partita termina, l'utente non può più cliccare su neesun'altra cella
+//quando gridtotalcellcount === gridtotalcellcount - 16 allora la partita termina (vittoria) e l'utente non può più cliccare 
+//quando finisce la partita bisogna comunicare il punteggio : punteggio= numero di celle con classe cell_dark
+    
 
 
 
