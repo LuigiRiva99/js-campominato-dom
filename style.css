@@ -2,22 +2,22 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
 }
 
 /* HEADER */
-header .container{
+header .ms_container{
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 30px;
-    border: 1px solid black;
     height: 80px;
 }
 
 /* MAIN */
 .grid_background{
     background-color: #BAE1FF;
-    padding: 50px;
+    padding: 50px 50px 0px 50px;
 }
 
 .grid{
@@ -62,11 +62,14 @@ header .container{
     cursor: pointer;
 }
 
+.result {
+    text-align: center;
+    padding: 20px;
+}
 /* FOOTER */
-footer .container{
+footer .ms_container{
     height: 80px;
     padding: 10px 30px;
-    border: 1px solid black;
 }
 
 p {
