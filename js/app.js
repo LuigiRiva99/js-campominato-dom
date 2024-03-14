@@ -72,7 +72,26 @@ playButton.addEventListener('click', function(){
             console.log(cellNum);
         })
     }
+    
+    //creare un array che genera numeri casuali da 1 a num max di celle
+    //NO doppioni, l'array essere riempito di numeri finchè non ce ne sono 16
+    const bombs= []; //array
+    while (bombs.length < 16) {
+        const bombNum = Math.floor(Math.random() * gridTotalCellCount) + 1; 
+        
+        if (bombs.includes(bombNum)) {
+        } else {
+            bombs.push(bombNum);
+        }
+    }
+    
+    console.log(bombs);
 })
+
+
+
+
+
 
 
 
